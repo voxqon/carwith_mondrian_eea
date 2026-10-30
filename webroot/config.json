@@ -1,0 +1,7 @@
+{
+  "title": "CarWith",
+  "icon": "assets/carwith.png",
+  "permissions": ["kernelsu.permission.SHELL"],
+  "caching": false,
+  "autoAddInsets": true
+}

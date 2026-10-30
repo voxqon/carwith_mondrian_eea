@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; connect-src 'none'">
+  <title>CarWith 部署管理</title>
+  <link rel="icon" href="assets/carwith.png">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main>
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/carwith.png" alt="" width="44" height="44">
+        <div><h1>CarWith</h1><p>mondrian · EEA</p></div>
+      </div>
+      <button class="icon-button" id="refresh" type="button" title="刷新状态" aria-label="刷新状态">
+        <svg aria-hidden="true"><use href="assets/icons.svg#refresh-cw"></use></svg>
+      </button>
+    </header>
+
+    <section class="status-section" aria-labelledby="status-title" aria-live="polite">
+      <div class="status-caption"><span class="status-dot" id="status-dot"></span><span id="status-caption">当前状态</span><span id="checked-at">正在读取</span></div>
+      <h2 id="status-title">连接管理环境</h2>
+      <p id="status-message">等待设备返回检测结果。</p>
+      <div id="notice" class="notice" hidden></div>
+    </section>
+
+    <section class="deploy-section" aria-labelledby="deployment-label">
+      <div class="deployment-row">
+        <div><h2 id="deployment-label">部署组件</h2><p id="desired-label" class="muted">尚未读取</p></div>
+        <button id="deployment-toggle" class="switch" type="button" role="switch" aria-checked="false" aria-labelledby="deployment-label" disabled><span aria-hidden="true"></span></button>
+      </div>
+      <div class="reboot-row" id="reboot-row" hidden>
+        <span>等待重启生效</span>
+        <button class="text-button" id="reboot" type="button"><svg aria-hidden="true"><use href="assets/icons.svg#power"></use></svg>立即重启</button>
+      </div>
+    </section>
+
+    <section class="components-section" aria-labelledby="components-title">
+      <div class="section-heading"><h2 id="components-title">组件状态</h2></div>
+      <dl class="rows">
+        <div><dt>CarWith<span>3.7.3-20251021</span></dt><dd id="apk-state">待检测</dd></div>
+        <div><dt>CarLife 组件<span id="carlife-version">8.8.4 · 小米定制版</span></dt><dd id="carlife-state">待检测</dd></div>
+        <div><dt>车联服务</dt><dd id="binder-state">待检测</dd></div>
+      </dl>
+      <button class="secondary-button" id="open" type="button" disabled>
+        <svg aria-hidden="true"><use href="assets/icons.svg#external-link"></use></svg>连接设置
+      </button>
+    </section>
+
+    <details class="diagnostics">
+      <summary>诊断详情</summary>
+      <dl class="detail-rows">
+        <div><dt>Root 管理器</dt><dd id="manager-state">待检测</dd></div>
+        <div><dt>系统兼容性</dt><dd id="rom-state">待检测</dd></div>
+        <div><dt>组件完整性</dt><dd id="payload-state">待检测</dd></div>
+        <div><dt>SELinux</dt><dd id="selinux-state">待检测</dd></div>
+        <div><dt>服务 JAR</dt><dd id="jar-state">待检测</dd></div>
+        <div><dt>设备</dt><dd id="device-detail">—</dd></div>
+        <div><dt>系统版本</dt><dd id="rom-detail">—</dd></div>
+        <div><dt>模块状态</dt><dd id="module-detail">—</dd></div>
+        <div><dt>挂载后端</dt><dd id="backend-detail">—</dd></div>
+        <div><dt>启动校验</dt><dd id="guard-detail">—</dd></div>
+        <div><dt>CarWith 路径</dt><dd id="path-detail">—</dd></div>
+        <div><dt>CarLife 路径</dt><dd id="carlife-path-detail">—</dd></div>
+        <div><dt>CarLife 原生库</dt><dd id="carlife-native-detail">待检测</dd></div>
+        <div><dt>JAR 目标</dt><dd>/system_ext/framework/miui.car.server.jar</dd></div>
+      </dl>
+    </details>
+    <footer><span>mondrian · OS3.0.2.0.VMNEUXM</span><span id="module-version"></span></footer>
+    <div id="feedback" class="feedback" role="status" hidden></div>
+  </main>
+
+  <dialog id="confirm">
+    <form method="dialog">
+      <h2 id="confirm-title">确认操作</h2>
+      <p id="confirm-message"></p>
+      <div class="dialog-actions">
+        <button class="text-button" value="cancel">取消</button>
+        <button class="primary-button" id="confirm-accept" value="accept">确认</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,14 @@
+/system/
+/dist/
+/state/
+/overlay_root/
+/carwith-layer.img
+/payload-manifest.json
+/carwith-layer.img.xz
+/payload.map
+/payload.sha256
+/SHA256SUMS.txt
+__pycache__/
+*.pyc
+*.zip
+*.zip.sha256

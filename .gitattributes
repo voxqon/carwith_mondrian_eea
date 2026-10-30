@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.sh text eol=lf
+META-INF/com/google/android/update-binary text eol=lf
+*.png binary
+*.apk binary
+*.jar binary
